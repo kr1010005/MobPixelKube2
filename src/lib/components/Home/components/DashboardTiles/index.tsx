@@ -1,5 +1,4 @@
 import {Text, TouchableHighlight, View} from 'react-native';
-import {Navigation} from '../../../../types';
 
 type DashboardTilesProps = {
   title: string;

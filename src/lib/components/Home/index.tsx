@@ -13,7 +13,6 @@ type Props = {
 
 export const DashboardHome = ({navigation}: Props) => {
   const doNavigation = (str: string) => {
-    console.log('SHASHI', str);
     navigation.navigate(str);
   };
   return (
@@ -84,8 +83,8 @@ export const DashboardHome = ({navigation}: Props) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 12,
-    // flex: 1,
+    paddingTop: 50,
+    paddingHorizontal: 12,
     alignItems: 'center',
     justifyContent: 'center',
   },

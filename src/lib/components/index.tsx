@@ -10,6 +10,7 @@ import {BookParking} from './Home/components/BookParking';
 import {BookServices} from './Home/components/BookServices';
 import {FindColleague} from './Home/components/FindColleague';
 import {ManageVisitor} from './Home/components/ManageVisitor';
+import {InstantBookingForm} from './Home/components/InstantBookingForm';
 
 const Stack = createNativeStackNavigator();
 
@@ -35,7 +36,7 @@ export const Main = () => {
         <Stack.Screen
           name="InstantBooking"
           component={InstantBooking}
-          options={{headerShown: true}}
+          options={{headerShown: true, headerTitle: 'Instant Booking'}}
         />
         <Stack.Screen
           name="BookRoom"
@@ -66,6 +67,11 @@ export const Main = () => {
           name="ManageVisitor"
           component={ManageVisitor}
           options={{headerShown: true}}
+        />
+        <Stack.Screen
+          name="InstantBookingForm"
+          component={InstantBookingForm}
+          options={{headerShown: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>

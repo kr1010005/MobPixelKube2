@@ -1,12 +1,10 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import React from 'react';
-import {BookRoom} from '../Home/components/BookRoom';
-import {InstantBooking} from '../Home/components/InstantBooking';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {DashboardHome} from '../Home';
 import {MyBooking} from '../MyBooking';
 import {Notification} from '../Notification';
 import {Profile} from '../Profile';
-import {DashboardHome} from '../Home';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,6 +20,7 @@ export const Dashboard = () => {
         component={DashboardHome}
         options={{
           tabBarLabel: 'Home',
+          headerShown: false,
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
