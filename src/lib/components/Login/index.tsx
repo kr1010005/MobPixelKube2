@@ -2,6 +2,8 @@ import {useState} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {Button, Checkbox, TextInput} from 'react-native-paper';
 import {Navigation} from '../../types';
+import {SvgXml} from 'react-native-svg';
+import {IconLibrary} from '../../../assets/icon';
 
 type Props = {
   navigation: Navigation;
@@ -13,10 +15,11 @@ export const Login = ({navigation}: Props) => {
   const [checked, setChecked] = useState(true);
   return (
     <View style={styles.container}>
-      <Image
+      {/* <Image
         source={require('../../../assets/Image/diamond.png')}
         style={{width: '40%', resizeMode: 'contain', margin: 30}}
-      />
+      /> */}
+      <SvgXml xml={IconLibrary.LOGIN_SCREEN_ICON} width="50%" height="50%" />
       <View style={styles.inputWrapper}>
         <TextInput
           label="Username"
@@ -57,7 +60,7 @@ export const Login = ({navigation}: Props) => {
           paddingHorizontal: 12,
           marginTop: 12,
           borderRadius: 6,
-          backgroundColor: '#2C95EE',
+          backgroundColor: '#1A8EF1',
           padding: 4,
         }}
         mode="contained"
@@ -74,6 +77,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#ffffff',
   },
   activityIndicator: {
     alignItems: 'center',

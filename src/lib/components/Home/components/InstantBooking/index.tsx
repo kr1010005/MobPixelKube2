@@ -219,6 +219,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     height: '100%',
+    backgroundColor: '#ffffff',
   },
   containerTop: {
     padding: 12,
@@ -241,7 +242,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     marginTop: 12,
     borderRadius: 6,
-    backgroundColor: '#2C95EE',
+    backgroundColor: '#1A8EF1',
     padding: 4,
   },
   btnContainer: {

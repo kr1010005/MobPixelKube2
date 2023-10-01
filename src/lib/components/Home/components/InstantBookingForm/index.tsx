@@ -1,8 +1,10 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {Navigation} from '../../../../types';
 import {BookingInfoTile} from '../../../../shared-controls/booking-info-tile';
 import {useState} from 'react';
+import {SvgXml} from 'react-native-svg';
+import {IconLibrary} from '../../../../../assets/icon';
 
 type Nav = {
   navigation: Navigation;
@@ -16,6 +18,7 @@ export const InstantBookingForm = (nav: Nav) => {
   const [meetingTitle, setMeetingTitle] = useState('');
   const [participants, setParticipants] = useState('');
   const [notes, setNotes] = useState('');
+  const [selectServices, setSelectServices] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -111,17 +114,20 @@ export const InstantBookingForm = (nav: Nav) => {
               flexDirection: 'row',
               justifyContent: 'space-evenly',
               marginTop: 24,
+              marginHorizontal: 6,
               gap: 16,
             }}>
             <Button
-              style={{width: '50%'}}
+              style={styles.outlinrBtn}
               mode="contained"
-              onPress={() => redirect('InstantBooking')}>
+              labelStyle={{color: '#1A8EF1', fontSize: 12}}
+              onPress={() => setSelectServices(true)}>
               Add Services
             </Button>
             <Button
-              style={{width: '50%'}}
+              style={styles.outlinrBtn}
               mode="contained"
+              labelStyle={{color: '#1A8EF1', fontSize: 12}}
               onPress={() => redirect('InstantBooking')}>
               Add parking
             </Button>
@@ -129,11 +135,54 @@ export const InstantBookingForm = (nav: Nav) => {
         </View>
       </View>
       <Button
-        style={{marginHorizontal: 12}}
+        style={styles.btn}
         mode="contained"
         onPress={() => redirect('InstantBooking')}>
         Book Meeting
       </Button>
+      {selectServices && (
+        <View style={styles.addServices}>
+          <View style={styles.backDrop}></View>
+          <View style={styles.bottomOverlay}>
+            <TouchableHighlight onPress={() => setSelectServices(false)}>
+              <View style={{display: 'flex'}}>
+                <SvgXml
+                  onPress={() => setSelectServices(false)}
+                  style={styles.bottomOverlayClose}
+                  xml={IconLibrary.CLOSE}
+                  height="14"
+                  width="14"
+                />
+              </View>
+            </TouchableHighlight>
+            <View style={styles.bottomOverlayContent}>
+              <Text
+                style={{
+                  color: '#3C5774',
+                  fontSize: 18,
+                  fontWeight: '600',
+                }}>
+                Select Services
+              </Text>
+              <View
+                style={{
+                  marginTop: 24,
+                  gap: 18,
+                }}>
+                <SvgXml xml={IconLibrary.COFFE} height="24" />
+                <SvgXml xml={IconLibrary.SNACK} height="24" />
+                <SvgXml xml={IconLibrary.LUNCH} height="24" />
+              </View>
+              <Button
+                style={styles.btn}
+                mode="contained"
+                onPress={() => setSelectServices(false)}>
+                Find Space
+              </Button>
+            </View>
+          </View>
+        </View>
+      )}
     </View>
   );
 };
@@ -144,7 +193,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     flex: 1,
-    marginVertical: 24,
+    marginTop: 24,
   },
   activityIndicator: {
     alignItems: 'center',
@@ -185,5 +234,50 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     gap: 8,
     padding: 12,
+  },
+  outlinrBtn: {
+    borderRadius: 6,
+    backgroundColor: '#ffffff',
+    color: 'red',
+    borderColor: '#1A8EF1',
+    borderWidth: 1,
+    width: '50%',
+  },
+  btn: {
+    margin: 12,
+    borderRadius: 6,
+    backgroundColor: '#1A8EF1',
+    padding: 4,
+  },
+  backDrop: {
+    position: 'absolute',
+    backgroundColor: '#c7cdd2',
+    opacity: 0.4,
+    bottom: 0,
+    top: 0,
+    width: '100%',
+  },
+  bottomOverlay: {
+    position: 'absolute',
+    backgroundColor: '#ffffff',
+    height: '56%',
+    bottom: 0,
+    width: '100%',
+    padding: 12,
+  },
+  bottomOverlayContent: {
+    padding: 24,
+  },
+  addServices: {
+    position: 'absolute',
+    bottom: 0,
+    top: 0,
+    width: '100%',
+  },
+  bottomOverlayClose: {
+    position: 'absolute',
+    right: 12,
+    top: 12,
+    display: 'flex',
   },
 });

@@ -5,6 +5,8 @@ import {DashboardHome} from '../Home';
 import {MyBooking} from '../MyBooking';
 import {Notification} from '../Notification';
 import {Profile} from '../Profile';
+import {SvgXml} from 'react-native-svg';
+import {IconLibrary} from '../../../assets/icon';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,7 +15,7 @@ export const Dashboard = () => {
     <Tab.Navigator
       initialRouteName="DashboardHome"
       screenOptions={{
-        tabBarActiveTintColor: '#e91e63',
+        tabBarActiveTintColor: '#1A8EF1',
       }}>
       <Tab.Screen
         name="DashboardHome"
@@ -21,9 +23,20 @@ export const Dashboard = () => {
         options={{
           tabBarLabel: 'Home',
           headerShown: false,
-          tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
-          ),
+          tabBarIcon: ({focused, color, size}) =>
+            focused ? (
+              <SvgXml
+                xml={IconLibrary.HOME_ACTIVE}
+                width="24px"
+                height="24px"
+              />
+            ) : (
+              <SvgXml
+                xml={IconLibrary.HOME_INACTIVE}
+                width="24px"
+                height="24px"
+              />
+            ),
         }}
       />
       <Tab.Screen
@@ -31,9 +44,20 @@ export const Dashboard = () => {
         component={MyBooking}
         options={{
           tabBarLabel: 'My Booking',
-          tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
-          ),
+          tabBarIcon: ({focused, color, size}) =>
+            focused ? (
+              <SvgXml
+                xml={IconLibrary.MY_BOOKING_ACTIVE}
+                width="24px"
+                height="24px"
+              />
+            ) : (
+              <SvgXml
+                xml={IconLibrary.MY_BOOKING_INACTIVE}
+                width="24px"
+                height="24px"
+              />
+            ),
         }}
       />
       <Tab.Screen
@@ -41,9 +65,20 @@ export const Dashboard = () => {
         component={Notification}
         options={{
           tabBarLabel: 'Notification',
-          tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="bell" color={color} size={size} />
-          ),
+          tabBarIcon: ({focused, color, size}) =>
+            focused ? (
+              <SvgXml
+                xml={IconLibrary.NOTIFICATION_ACTIVE}
+                width="24px"
+                height="24px"
+              />
+            ) : (
+              <SvgXml
+                xml={IconLibrary.NOTIFICATION_INACTIVE}
+                width="24px"
+                height="24px"
+              />
+            ),
           tabBarBadge: 3,
         }}
       />
@@ -52,9 +87,20 @@ export const Dashboard = () => {
         component={Profile}
         options={{
           tabBarLabel: 'Profile',
-          tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="account" color={color} size={size} />
-          ),
+          tabBarIcon: ({focused, color, size}) =>
+            focused ? (
+              <SvgXml
+                xml={IconLibrary.PROFILE_ACTIVE}
+                width="24px"
+                height="24px"
+              />
+            ) : (
+              <SvgXml
+                xml={IconLibrary.PROFILE_INACTIVE}
+                width="24px"
+                height="24px"
+              />
+            ),
         }}
       />
     </Tab.Navigator>

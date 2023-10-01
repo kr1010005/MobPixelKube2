@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {ActivityIndicator, View, StyleSheet, Image, Text} from 'react-native';
 import {Navigation} from '../../types';
+import {SvgXml} from 'react-native-svg';
+import {IconLibrary} from '../../../assets/icon';
 
 type Props = {
   navigation: Navigation;
@@ -18,10 +20,7 @@ const SplashScreen = ({navigation}: Props) => {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require('../../../assets/Image/diamond.png')}
-        style={{width: '80%', resizeMode: 'contain', margin: 30}}
-      />
+      <SvgXml xml={IconLibrary.SPLASH_SCREEN_ICON} width="50%" height="50%" />
       <ActivityIndicator
         animating={animating}
         color="#FFFFFF"
@@ -39,7 +38,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#2b9cd8',
+    backgroundColor: '#1A8EF1',
   },
   activityIndicator: {
     alignItems: 'center',
