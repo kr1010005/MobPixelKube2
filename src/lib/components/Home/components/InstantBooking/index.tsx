@@ -1,17 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {
-  Image,
-  StyleSheet,
-  TouchableHighlight,
-  View,
-  useWindowDimensions,
-} from 'react-native';
+import {StyleSheet, View, useWindowDimensions} from 'react-native';
 import DatePicker from 'react-native-date-picker';
-import {Button, Text, TextInput} from 'react-native-paper';
+import {Text, TextInput} from 'react-native-paper';
 import DropDown from 'react-native-paper-dropdown';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
-import {BookingInfoTile} from '../../../../shared-controls/booking-info-tile';
+import {MOCK_DATA} from '../../../../mock';
+import MPixButton from '../../../../shared-controls/mpix-button';
 import {Navigation} from '../../../../types';
+import SharedStyle from '../../../shared-style';
+import InstantBookingListView from './ListView';
+import InstantBookingMapView from './MapView';
 
 type Nav = {
   navigation: Navigation;
@@ -26,7 +24,6 @@ export const InstantBooking = (nav: Nav) => {
   const [bottomPanel, setBottomPanel] = useState(false);
   const layout = useWindowDimensions();
 
-  const [date, setDate] = useState(new Date());
   const [startDateTime, setStartDateTime] = useState('');
   const [endDateTime, setEndDateTime] = useState('');
   const [openStartDatePicker, setOpenStartDatePicker] = useState(false);
@@ -34,82 +31,31 @@ export const InstantBooking = (nav: Nav) => {
 
   const [index, setIndex] = useState(0);
   const [routes] = useState([
-    {key: 'first', title: 'List View'},
-    {key: 'second', title: 'Map View'},
+    {key: 'listView', title: 'List View'},
+    {key: 'mapView', title: 'Map View'},
   ]);
 
-  const redirect = (str: string) => {
-    nav?.navigation?.navigate(str);
-  };
+  const date = new Date();
 
   useEffect(() => {
-    // do something
-    console.log('Test');
+    console.log('Navigation Switched');
   }, [nav]);
 
-  const meetingRoom = [
-    {
-      label: 'Einstein - Meeting Room',
-      value: '001',
-    },
-    {
-      label: 'Einstein - Conference Room',
-      value: '002',
-    },
-    {
-      label: 'Others',
-      value: 'others',
-    },
-  ];
-
-  const floors = [
-    {
-      label: '1',
-      value: '001',
-    },
-    {
-      label: '2',
-      value: '002',
-    },
-    {
-      label: '3',
-      value: '003',
-    },
-  ];
-
-  const FirstRoute = () => (
-    <View style={{padding: 12, display: 'flex', gap: 12}}>
-      <TouchableHighlight onPress={() => redirect('InstantBookingForm')}>
-        <BookingInfoTile />
-      </TouchableHighlight>
-      <BookingInfoTile />
-    </View>
+  const renderListView = () => (
+    <InstantBookingListView navigation={nav.navigation} />
   );
-  const SecondRoute = () => (
-    <View>
-      <Image
-        style={{
-          width: '100%',
-          height: '100%',
-          aspectRatio: 1,
-          alignSelf: 'center',
-        }}
-        resizeMode="contain"
-        source={require('../../../../../assets/Image/ein_map.png')}
-      />
-    </View>
-  );
+  const renderMapView = () => <InstantBookingMapView />;
 
   const renderScene = SceneMap({
-    first: FirstRoute,
-    second: SecondRoute,
+    listView: renderListView,
+    mapView: renderMapView,
   });
 
   const renderTabBar = (props: any) => (
     <TabBar
       {...props}
       indicatorStyle={styles.indicatorStyle}
-      style={{backgroundColor: 'white'}}
+      style={SharedStyle.mPixThemeBgWhite}
       renderLabel={({focused, route}) => {
         return (
           <View>
@@ -134,10 +80,10 @@ export const InstantBooking = (nav: Nav) => {
             onDismiss={() => setShowSpaceDropDown(false)}
             value={room}
             setValue={setRoom}
-            list={meetingRoom}
+            list={MOCK_DATA.meetingRoom}
           />
         )}
-        <View style={styles.inputWrapper}>
+        <View style={[SharedStyle.inputWrapper]}>
           <TextInput
             label="Start Date & Start Time"
             onTouchStart={() => setOpenStartDatePicker(true)}
@@ -184,18 +130,15 @@ export const InstantBooking = (nav: Nav) => {
             onDismiss={() => setShowFloorDropDown(false)}
             value={floor}
             setValue={setFloor}
-            list={floors}
+            list={MOCK_DATA.floors}
           />
         )}
       </View>
       {!bottomPanel && (
         <View style={styles.btnContainer}>
-          <Button
-            style={styles.btn}
-            mode="contained"
-            onPress={() => setBottomPanel(true)}>
-            Find Space
-          </Button>
+          <MPixButton
+            title="Find Space"
+            onPress={() => setBottomPanel(true)}></MPixButton>
         </View>
       )}
       {bottomPanel && (
@@ -215,7 +158,6 @@ export const InstantBooking = (nav: Nav) => {
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
     height: '100%',
@@ -226,24 +168,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     gap: 12,
-  },
-  activityIndicator: {
-    alignItems: 'center',
-    height: 80,
-  },
-  inputWrapper: {
-    display: 'flex',
-    width: '100%',
-    flexDirection: 'column',
-    gap: 12,
-  },
-  btn: {
-    width: '100%',
-    paddingHorizontal: 12,
-    marginTop: 12,
-    borderRadius: 6,
-    backgroundColor: '#1A8EF1',
-    padding: 4,
   },
   btnContainer: {
     padding: 12,

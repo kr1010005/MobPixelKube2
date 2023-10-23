@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import {ActivityIndicator, View, StyleSheet, Image, Text} from 'react-native';
-import {Navigation} from '../../types';
+import React, {useEffect, useState} from 'react';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import {IconLibrary} from '../../../assets/icon';
+import {Navigation} from '../../types';
+import SharedStyle from '../shared-style';
 
 type Props = {
   navigation: Navigation;
@@ -15,11 +16,11 @@ const SplashScreen = ({navigation}: Props) => {
     setTimeout(() => {
       setAnimating(false);
       navigation.navigate('Login');
-    }, 5000);
+    }, 500);
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.splashSCreen, SharedStyle.mPixThemeBgBlue]}>
       <SvgXml xml={IconLibrary.SPLASH_SCREEN_ICON} width="50%" height="50%" />
       <ActivityIndicator
         animating={animating}
@@ -34,11 +35,10 @@ const SplashScreen = ({navigation}: Props) => {
 export default SplashScreen;
 
 const styles = StyleSheet.create({
-  container: {
+  splashSCreen: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#1A8EF1',
   },
   activityIndicator: {
     alignItems: 'center',

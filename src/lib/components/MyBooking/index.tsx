@@ -15,14 +15,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  activityIndicator: {
-    alignItems: 'center',
-    height: 80,
-  },
-  inputWrapper: {
-    display: 'flex',
-    width: '100%',
-    flexDirection: 'column',
-    gap: 12,
-  },
 });

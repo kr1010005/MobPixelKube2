@@ -3,7 +3,7 @@ import {SvgXml} from 'react-native-svg';
 import {IconLibrary} from '../../../assets/icon';
 import {Navigation} from '../../types';
 import {DashboardTiles} from './components/DashboardTiles';
-import {MarketingMeeting} from './components/MarketingMeeting';
+import SharedStyle from '../shared-style';
 
 type Props = {
   navigation: Navigation;
@@ -14,34 +14,20 @@ export const DashboardHome = ({navigation}: Props) => {
     navigation.navigate(str);
   };
   return (
-    <View style={styles.container}>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          width: '100%',
-        }}>
+    <View style={[styles.dashboardWrapper, SharedStyle.mPixThemeBgWhite]}>
+      <View style={SharedStyle.rowCenterSpaceBetween}>
         <View style={{gap: 4}}>
-          <Text style={{fontSize: 24, fontWeight: '500', color: '#2E445B'}}>
+          <Text
+            style={[{fontSize: 24, fontWeight: '500'}, SharedStyle.grayText]}>
             Hi John Davis,
           </Text>
-          <Text style={{fontSize: 14, color: '#2E445B'}}>
+          <Text style={[{fontSize: 14}, SharedStyle.grayText]}>
             Have a great day ahead!
           </Text>
         </View>
         <SvgXml xml={IconLibrary.SCAN} width="58" height="58" />
       </View>
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          gap: 12,
-          width: '100%',
-          marginTop: 24,
-          margin: 'auto',
-        }}>
-        {/* <MarketingMeeting title="Marketing Meeting"></MarketingMeeting> */}
+      <View style={styles.dashboardTimesWrapper}>
         <DashboardTiles
           title="Instant Booking"
           navUrl=""
@@ -97,21 +83,15 @@ export const DashboardHome = ({navigation}: Props) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  dashboardWrapper: {
     paddingTop: 50,
     paddingHorizontal: 12,
-    alignItems: 'flex-start',
-    backgroundColor: '#ffffff',
     height: '100%',
   },
-  activityIndicator: {
-    alignItems: 'center',
-    height: 80,
-  },
-  inputWrapper: {
-    display: 'flex',
-    width: '100%',
-    flexDirection: 'column',
+  dashboardTimesWrapper: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     gap: 12,
+    marginTop: 12,
   },
 });

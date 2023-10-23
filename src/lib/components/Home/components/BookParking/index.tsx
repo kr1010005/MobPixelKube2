@@ -1,28 +1,16 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {View} from 'react-native';
+import {MeetingDetailCard} from '../../../../shared-controls/meeting-detail-card';
+import SharedStyle from '../../../shared-style';
 
 export const BookParking = () => {
   return (
-    <View style={styles.container}>
-      <Text>Book Parking</Text>
+    <View
+      style={[
+        SharedStyle.mPixThemeBgWhite,
+        {gap: 16, padding: 12, height: '100%'},
+      ]}>
+      <MeetingDetailCard />
+      <MeetingDetailCard />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 12,
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  activityIndicator: {
-    alignItems: 'center',
-    height: 80,
-  },
-  inputWrapper: {
-    display: 'flex',
-    width: '100%',
-    flexDirection: 'column',
-    gap: 12,
-  },
-});

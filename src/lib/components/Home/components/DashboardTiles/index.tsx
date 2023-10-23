@@ -16,25 +16,10 @@ export const DashboardTiles = (props: DashboardTilesProps) => {
   };
 
   return props.odd ? (
-    <View style={styles.touchableContainer}>
-      <View style={styles.marketMeetBlock}>
-        <Text
-          style={{
-            fontSize: 13,
-            fontWeight: '500',
-            color: '#3C5774',
-            marginBottom: 6,
-          }}>
-          Marketing Meeting
-        </Text>
-        <Text
-          style={{
-            fontSize: 10,
-            color: '#9B9B9B',
-            marginBottom: 12,
-          }}>
-          15:00 minutes remaining
-        </Text>
+    <View style={styles.tileWrapper}>
+      <View style={{padding: 20}}>
+        <Text style={styles.marketMeetHeader}>Marketing Meeting</Text>
+        <Text style={styles.marketMeetCaption}>15:00 minutes remaining</Text>
         <View style={styles.marketMeetActionRow}>
           <SvgXml xml={IconLibrary.STOP} width="28px" height="28px" />
           <SvgXml xml={IconLibrary.ARROW} width="28px" height="28px" />
@@ -43,43 +28,44 @@ export const DashboardTiles = (props: DashboardTilesProps) => {
     </View>
   ) : (
     <TouchableHighlight
-      style={styles.touchableContainer}
+      style={styles.tileWrapper}
       underlayColor={'COLOR'}
       onPress={() => doNavigationCallback(props.navUrl)}>
-      <View style={styles.thumbBlock}>
+      <View style={styles.tileBlock}>
         <SvgXml xml={props?.icon} width="40px" height="40px" />
-        <Text style={styles.thumbBlockText}>{props.title}</Text>
+        <Text style={styles.tileBlockText}>{props.title}</Text>
       </View>
     </TouchableHighlight>
   );
 };
 
 const styles = StyleSheet.create({
-  touchableContainer: {
-    borderColor: '#dcdcdc',
-    borderStyle: 'solid',
+  tileWrapper: {
+    alignItems: 'center',
+    justifyContent: 'center',
     borderWidth: 1,
     borderRadius: 6,
     width: '48%',
     height: '24%',
-    alignItems: 'center',
-    justifyContent: 'center',
+    borderColor: '#dcdcdc',
   },
+  marketMeetHeader: {
+    fontSize: 13,
+    fontWeight: '500',
+    marginBottom: 6,
+    color: '#3C5774',
+  },
+  marketMeetCaption: {fontSize: 10, marginBottom: 12, color: '#9B9B9B'},
   marketMeetActionRow: {
-    display: 'flex',
     flexDirection: 'row',
-    gap: 24,
+    gap: 18,
   },
-  thumbBlock: {
-    display: 'flex',
+  tileBlock: {
     alignItems: 'center',
     gap: 6,
   },
-  thumbBlockText: {
+  tileBlockText: {
     fontSize: 12,
     color: '#3C5774',
-  },
-  marketMeetBlock: {
-    padding: 20,
   },
 });

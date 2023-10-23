@@ -1,12 +1,11 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {SvgXml} from 'react-native-svg';
+import {IconLibrary} from '../../../assets/icon';
 import {DashboardHome} from '../Home';
 import {MyBooking} from '../MyBooking';
 import {Notification} from '../Notification';
 import {Profile} from '../Profile';
-import {SvgXml} from 'react-native-svg';
-import {IconLibrary} from '../../../assets/icon';
 
 const Tab = createBottomTabNavigator();
 
@@ -86,6 +85,7 @@ export const Dashboard = () => {
         name="Profile"
         component={Profile}
         options={{
+          headerShown: false,
           tabBarLabel: 'Profile',
           tabBarIcon: ({focused, color, size}) =>
             focused ? (
