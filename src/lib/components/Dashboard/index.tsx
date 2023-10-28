@@ -106,4 +106,3 @@ export const Dashboard = () => {
     </Tab.Navigator>
   );
 };
-// test
