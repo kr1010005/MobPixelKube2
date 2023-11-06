@@ -1,5 +1,8 @@
-import {StyleSheet, Text, View} from 'react-native';
-import {MeetingDetailCard} from '../../../../shared-controls/meeting-detail-card';
+import React from 'react';
+import {View} from 'react-native';
+import {bookServicesMock} from '../../../../mock';
+import {MPixCardLarge} from '../../../../shared-controls/mpix-card/mpix-card-large';
+import {MPixCardLargeProps} from '../../../../types';
 import SharedStyle from '../../../shared-style';
 
 export const BookServices = () => {
@@ -7,10 +10,11 @@ export const BookServices = () => {
     <View
       style={[
         SharedStyle.mPixThemeBgWhite,
-        {gap: 16, padding: 12, height: '100%'},
+        {gap: 10, padding: 28, height: '100%'},
       ]}>
-      <MeetingDetailCard />
-      <MeetingDetailCard />
+      {bookServicesMock.map((obj: MPixCardLargeProps) => {
+        return <MPixCardLarge key={obj.id} {...obj} />;
+      })}
     </View>
   );
 };

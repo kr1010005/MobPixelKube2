@@ -1,6 +1,7 @@
 import {TouchableHighlight, View} from 'react-native';
-import {BookingInfoTile} from '../../../../../shared-controls/booking-info-tile';
-import {Navigation} from '../../../../../types';
+import {MPixCardLargeProps, Navigation} from '../../../../../types';
+import {bookServicesMock} from '../../../../../mock';
+import {MPixCardLarge} from '../../../../../shared-controls/mpix-card/mpix-card-large';
 
 type Nav = {
   navigation: Navigation;
@@ -11,11 +12,14 @@ export const InstantBookingListView = (nav: Nav) => {
     nav?.navigation?.navigate(str);
   };
   return (
-    <View style={{padding: 12, display: 'flex', gap: 12}}>
-      <TouchableHighlight onPress={() => redirect('InstantBookingForm')}>
-        <BookingInfoTile />
-      </TouchableHighlight>
-      <BookingInfoTile />
+    <View style={{padding: 12, gap: 12}}>
+      {bookServicesMock.map((obj: MPixCardLargeProps) => {
+        return (
+          <TouchableHighlight onPress={() => redirect('InstantBookingForm')}>
+            <MPixCardLarge key={obj.id} {...obj} />
+          </TouchableHighlight>
+        );
+      })}
     </View>
   );
 };

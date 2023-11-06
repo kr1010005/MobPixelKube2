@@ -4,6 +4,8 @@ import {Button, TextInput} from 'react-native-paper';
 import {SelectServices} from '../../../../../shared-controls/select-services';
 import {Navigation} from '../../../../../types';
 import SharedStyle from '../../../../shared-style';
+import {MPixThickHeader} from '../../../../../shared-controls/mpix-card/mpix-thick-banner';
+import {mockDataOne, mockDataThree} from '../../../../../mock';
 
 type Nav = {
   navigation: Navigation;
@@ -20,6 +22,10 @@ export const InstantBookingForm = (nav: Nav) => {
     setSelectServices(flag);
   };
 
+  const doSomething = () => {
+    redirect('InstantBooking');
+  };
+
   const [meetingTitle, setMeetingTitle] = useState('');
   const [participants, setParticipants] = useState('');
   const [notes, setNotes] = useState('');
@@ -27,71 +33,11 @@ export const InstantBookingForm = (nav: Nav) => {
   return (
     <View style={styles.container}>
       <View>
-        <View style={styles.bluePanel}>
-          <View style={styles.tileBlock}>
-            <Image
-              style={{resizeMode: 'contain', width: 80, height: 80}}
-              source={require('../../../../../../assets/Image/tile_pic_one.png')}
-            />
-            <View>
-              <Text style={{fontWeight: '600', fontSize: 16, color: '#ffffff'}}>
-                Einstein - Meeting Room 1
-              </Text>
-              <View style={styles.badgeRow}>
-                <Image
-                  style={{resizeMode: 'contain', width: 14, height: 14}}
-                  source={require('../../../../../../assets/Image/small-icons/001.png')}
-                />
-                <Image
-                  style={{resizeMode: 'contain', width: 14, height: 14}}
-                  source={require('../../../../../../assets/Image/small-icons/002.png')}
-                />
-                <Image
-                  style={{resizeMode: 'contain', width: 14, height: 14}}
-                  source={require('../../../../../../assets/Image/small-icons/003.png')}
-                />
-                <Image
-                  style={{resizeMode: 'contain', width: 14, height: 14}}
-                  source={require('../../../../../../assets/Image/small-icons/004.png')}
-                />
-              </View>
-            </View>
-          </View>
-          <View
-            style={{
-              borderTopColor: '#c7cdd2',
-              borderTopWidth: 1,
-              marginHorizontal: 16,
-              paddingVertical: 8,
-            }}>
-            <Text
-              style={{
-                fontWeight: '300',
-                fontSize: 12,
-                marginTop: 4,
-                color: '#ffffff',
-              }}>
-              2nd Floor, Smartcity, UK
-            </Text>
-          </View>
-          <View
-            style={{
-              borderTopColor: '#c7cdd2',
-              borderTopWidth: 1,
-              marginHorizontal: 16,
-              paddingVertical: 8,
-            }}>
-            <Text
-              style={{
-                fontWeight: '300',
-                fontSize: 12,
-                marginTop: 4,
-                color: '#ffffff',
-              }}>
-              2nd Floor, Smartcity, UK
-            </Text>
-          </View>
-        </View>
+        <MPixThickHeader
+          {...mockDataThree}
+          handleClick={() => doSomething()}
+          headerPriority={false}
+        />
         <View style={styles.formPanel}>
           <TextInput
             label="Meeting Title"
@@ -156,7 +102,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'space-between',
     flex: 1,
-    marginTop: 24,
+    marginTop: 40,
   },
   bluePanel: {
     backgroundColor: '#1a8ff1',

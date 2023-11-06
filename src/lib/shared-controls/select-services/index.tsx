@@ -5,6 +5,7 @@ import {SvgXml} from 'react-native-svg';
 import {IconLibrary} from '../../../assets/icon';
 import {black} from 'react-native-paper/lib/typescript/src/styles/themes/v2/colors';
 import SharedStyle from '../../components/shared-style';
+import MPixCounter from '../mpix-counter';
 
 type SelectServiceProps = {
   handleClick: (flag: boolean) => void;
@@ -46,9 +47,21 @@ export const SelectServices = (props: SelectServiceProps) => {
                 marginTop: 24,
                 gap: 18,
               }}>
-              <SvgXml xml={IconLibrary.COFFE} height="24" />
-              <SvgXml xml={IconLibrary.SNACK} height="24" />
-              <SvgXml xml={IconLibrary.LUNCH} height="24" />
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <SvgXml xml={IconLibrary.COFFE} height="24" />
+                <MPixCounter />
+              </View>
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <SvgXml xml={IconLibrary.SNACK} height="24" />
+                <MPixCounter />
+              </View>
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <SvgXml xml={IconLibrary.LUNCH} height="24" />
+                <MPixCounter />
+              </View>
             </View>
           </View>
         </View>

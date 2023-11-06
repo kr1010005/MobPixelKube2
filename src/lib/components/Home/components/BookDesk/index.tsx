@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import {Button, Checkbox, RadioButton, TextInput} from 'react-native-paper';
 import DropDown from 'react-native-paper-dropdown';
